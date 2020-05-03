@@ -412,7 +412,11 @@ def give_round_scores(list_of_players):
 
     for player in list_of_players:
         cards = [card.name for card in player.cards]
-        print("\n{} has these cards: ".format(player.name), cards)
+        cards_string = " "
+        for card in cards:
+            cards_string += card + ", "
+        cards_string = cards_string[:-2]
+        print("\n{} has these cards: ".format(player.name), cards_string)
         print("{} has a score of {}".format(player.name, player.score()))
     final_scores = [player.score() for player in list_of_players]
     min_score = min(final_scores)
