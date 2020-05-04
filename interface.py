@@ -50,6 +50,20 @@ name_player_b.pack(side=BOTTOM)
 cards_player_b.pack()
 
 frame_player_b.pack(side=BOTTOM)
+#########END INIT DECK FOR B################
+
+#Playing zone in the middle
+playing_zone = Frame(window, bg='#0a4d1d')
+
+deck_image = PhotoImage(file="images/blank.png") #deck image to be created
+deck = Canvas(playing_zone, width=width_card, height=height_card, bg='#0a4d1d', bd=0, highlightthickness=0)
+deck.create_image(width_card/2, height_card/2, image=blank_card_image)
+deck.grid(row=0, column=0, padx=10, pady=10)
+
+depot_area = Canvas(playing_zone, width=width_card, height=height_card, bg='#383838', bd=0, highlightthickness=0)
+depot_area.grid(row=0, column=1, padx=10, pady=10)
+
+playing_zone.pack(expand=YES)
 
 window.mainloop()
 
