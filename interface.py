@@ -2,11 +2,8 @@ from tkinter import *
 
 window = Tk()
 window.title("Thalom - the game")
-<<<<<<< Updated upstream
 window.config(background='#c3d8eb')
-=======
 window.geometry("720x480")
-window.config(background='#c3d8eb')
 
 width_card = 63
 height_card = 86
@@ -55,6 +52,5 @@ cards_player_b.pack()
 frame_player_b.pack(side=BOTTOM)
 
 window.mainloop()
->>>>>>> Stashed changes
 
 window.mainloop()
