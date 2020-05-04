@@ -373,6 +373,7 @@ def loop_until_thalom(list_of_players):
     """Main loop that stops before the game
     goes back to the player who said thalom"""
     player_that_said_thalom = 0
+    someone_said_thalom = False
     check = True
     while check: #makes the loop re-read list_of_players
         for player in list_of_players:
@@ -381,11 +382,13 @@ def loop_until_thalom(list_of_players):
                 break
             player.launch_turn()
             player.power(list_of_players)
-            player.say_thalom()
+            if not someone_said_thalom:
+                player.say_thalom()
             throwing_proposition(list_of_players)
             Card.shuffle_new_deck() #happens only if the deck's empty
             if player.thalom:
                 player_that_said_thalom = player
+                someone_said_thalom = True
 
 def throwing_proposition(list_of_players):
     """Players can tell if they want to throw cards"""
