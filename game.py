@@ -29,7 +29,7 @@ def initialize_players():
                 print("Incorrect Name")
             else:
                 names_secure.append(player_name.lower())
-                new_player = Player(player_name, index)
+                new_player = Player(player_name)
                 list_of_players.append(new_player)
                 break
     return list_of_players
@@ -91,7 +91,7 @@ def throwing_proposition(list_of_players):
     while True:
         print("\nIf you want to throw a card over {},".format(Card.rejected_cards[-1].name))
         print("Write your name and press enter")
-        print("If everyone's done enter 'END' to continue the game")
+        print("If everyone's done enter 'END' to continue the round")
         user_entry = input().lower()
         if user_entry == 'end':
             break

@@ -4,9 +4,9 @@ class Player:
     """a player has a name and can pick cards
     and make decision about them"""
 
-    def __init__(self, name, index):
+    def __init__(self, name):
         self.name = name
-        self.index = index
+        # self.index = index
         self.cards = []
         self.thalom = False
 
