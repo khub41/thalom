@@ -13,7 +13,7 @@ class App(Tk):
 class SetupFrame(Frame):
     list_of_players = []
 
-    def __init__(self, window=None):
+    def __init__(self, window):
         super().__init__(window)
         self.label = Label(self, text="Enter players names")
         self.label.grid(row=0, column=0)
@@ -35,7 +35,7 @@ class SetupFrame(Frame):
         self.setup_button = Button(self, text="Submit")
         self.setup_button["command"] = self.submit
         self.setup_button.grid(row=2, column=0)
-        self.pack()
+        self.pack(expand=YES)
         window.mainloop()
         
     def submit(self):
