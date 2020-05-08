@@ -5,12 +5,48 @@ from card import *
 class App(Tk):
 
     def __init__(self):
-        super().__init__(self)
-        window = Tk()
-        window.title("Thalom - the game")
-        window.config(background='#c3d8eb')
-        window.geometry("720x480")
+        super().__init__()
+        self.title("Thalom - the game")
+        self.config(background='#c3d8eb')
+        self.geometry("720x480")
+
+class SetupFrame(Frame):
+    list_of_players = []
+
+    def __init__(self, window=None):
+        super().__init__(window)
+        self.label = Label(self, text="Enter players names")
+        self.label.grid(row=0, column=0)
+
+        self.name_entry_one = Entry(self)
+        self.name_entry_two = Entry(self)
+        self.name_entry_one.grid(row=1, column=0)
+        self.name_entry_two.grid(row=1, column=1)
+        
+        self.content_one = StringVar()
+        self.content_two = StringVar()
+        self.content_one.set("Name Player 1")
+        self.content_two.set("Name Player 2")
+
+
+        self.name_entry_one["textvariable"] = self.content_one
+        self.name_entry_two["textvariable"] = self.content_two
+
+        self.setup_button = Button(self, text="Submit")
+        self.setup_button["command"] = self.submit
+        self.setup_button.grid(row=2, column=0)
+        self.pack()
         window.mainloop()
+        
+    def submit(self):
+        self.list_of_players.append(self.content_one.get())
+        self.list_of_players.append(self.content_two.get())
+        self.forget()
+        # return self.list_of_players
+
+
+
+
 
 
 class CardButton(Button):

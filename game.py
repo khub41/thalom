@@ -2,6 +2,7 @@
 
 from player import *
 from scorechart import *
+from interface import *
 
 
 def initialize_players():
@@ -9,29 +10,38 @@ def initialize_players():
     the list_of_players that is going to be
     used to iterate for next functions.
     list_of_players contains Player objects"""
-    while True:
-        nb_of_players = input("\nEntrez le nombre de joueurs : ")
-        if not nb_of_players.isdigit():
-            print("You have to enter a number!")
-        else:
-            nb_of_players = int(nb_of_players)
-            if nb_of_players < 2:
-                print("You have to enter at least two!")
-            else:
-                break
-    nb_of_players = int(nb_of_players)
-    list_of_players = [] #This list is going to be returned
-    names_secure = [] #stores player's names in lower mode for security
-    for index in range(1, nb_of_players+1):
-        while True:
-            player_name = input("Entrer le nom du joueur {} ".format(index))
-            if (player_name.lower() == 'end' or player_name.lower() in names_secure):
-                print("Incorrect Name")
-            else:
-                names_secure.append(player_name.lower())
-                new_player = Player(player_name)
-                list_of_players.append(new_player)
-                break
+    # while True:
+    #     nb_of_players = input("\nEntrez le nombre de joueurs : ")
+    #     if not nb_of_players.isdigit():
+    #         print("You have to enter a number!")
+    #     else:
+    #         nb_of_players = int(nb_of_players)
+    #         if nb_of_players < 2:
+    #             print("You have to enter at least two!")
+    #         else:
+    #             break
+    # nb_of_players = int(nb_of_players)
+    # list_of_players = [] #This list is going to be returned
+    # names_secure = [] #stores player's names in lower mode for security
+    # for index in range(1, nb_of_players+1):
+    #     while True:
+    #         player_name = input("Entrer le nom du joueur {} ".format(index))
+    #         if (player_name.lower() == 'end' or player_name.lower() in names_secure):
+    #             print("Incorrect Name")
+    #         else:
+    #             names_secure.append(player_name.lower())
+    #             new_player = Player(player_name)
+    #             list_of_players.append(new_player)
+    #             break
+    # return list_of_players
+    
+    window = App()
+    setup = SetupFrame(window)
+    names = setup.list_of_players
+    list_of_players= []
+    for name in names:
+        new_player = Player(name)
+        list_of_players.append(new_player)
     return list_of_players
 
 def round_loop(list_of_players, score_chart):
