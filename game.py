@@ -4,7 +4,6 @@ from player import *
 from scorechart import *
 from interface import *
 
-
 def initialize_players():
     """This fucntion creates the players
     the list_of_players that is going to be
@@ -35,9 +34,10 @@ def initialize_players():
     #             break
     # return list_of_players
     
+    # names = setup.list_of_players
     window = App()
     setup = SetupFrame(window)
-    names = setup.list_of_players
+    names = setup.names
     list_of_players= []
     for name in names:
         new_player = Player(name)

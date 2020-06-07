@@ -11,10 +11,11 @@ class App(Tk):
         self.geometry("720x480")
 
 class SetupFrame(Frame):
-    list_of_players = []
+    names = []
 
     def __init__(self, window):
         super().__init__(window)
+        self.window = window
         self.label = Label(self, text="Enter players names")
         self.label.grid(row=0, column=0)
 
@@ -37,16 +38,16 @@ class SetupFrame(Frame):
         self.setup_button.grid(row=2, column=0)
         self.pack(expand=YES)
         window.mainloop()
-        
     def submit(self):
-        self.list_of_players.append(self.content_one.get())
-        self.list_of_players.append(self.content_two.get())
+        self.names.append(self.content_one.get())
+        self.names.append(self.content_two.get())
         self.forget()
-        # return self.list_of_players
-
-
-
-
+        Card.initialize_deck_from_json()
+        position = TOP
+        for name in self.names:
+            new_player = PlayerFrame(name, self.window, position)
+            new_player.update_cards()
+            position = BOTTOM
 
 
 class CardButton(Button):
@@ -93,7 +94,6 @@ class IdButton(Button):
         super().__init__(window)
         self["text"] = "Select {}".format(player.name)
 
-        
 # class PlayerFrame(Player):
 
 #     def __init__(self, name, playground, position):
@@ -183,6 +183,7 @@ class PlayerFrame(Player):
             button_cards.append(card_button)
             i+=1
         self.button_cards = button_cards
+
 
 def init_playing_zone(window, width_card, height_card):
     #Playing zone in the middle
