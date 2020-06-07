@@ -38,7 +38,9 @@ class SetupFrame(Frame):
         self.setup_button.grid(row=2, column=0)
         self.pack(expand=YES)
         window.mainloop()
+
     def submit(self):
+
         self.names.append(self.content_one.get())
         self.names.append(self.content_two.get())
         self.forget()
@@ -48,6 +50,9 @@ class SetupFrame(Frame):
             new_player = PlayerFrame(name, self.window, position)
             new_player.update_cards()
             position = BOTTOM
+        init_playing_zone(self.window, 63, 86)
+        ready = ReadyButton(self.window)
+        ready.pack(expand=YES)
 
 
 class CardButton(Button):
@@ -93,6 +98,12 @@ class IdButton(Button):
     def __init__(window, player):
         super().__init__(window)
         self["text"] = "Select {}".format(player.name)
+
+class ReadyButton(Button):
+    def __init__(self, window):
+        super().__init__(window)
+        self["text"] = "We're ready to play ! "
+        self["command"] = lambda: launch_showing_card_round(SetupFrame.names)
 
 # class PlayerFrame(Player):
 
@@ -199,6 +210,7 @@ def init_playing_zone(window, width_card, height_card):
 
     playing_zone.pack(expand=YES)
     # window.update()
+def launch_showing_card_round(names):
 
 
 def main():
@@ -206,17 +218,18 @@ def main():
     window.title("Thalom - the game")
     window.config(background='#c3d8eb')
     window.geometry("720x480")
-    Card.initialize_deck_from_json()
-    player_a = PlayerFrame("Hugo", window, TOP)
-    player_b = PlayerFrame("Cami", window, BOTTOM)
-    player_a.update_cards()
-    player_b.update_cards()
-    width_card = 63
-    height_card = 86
-    init_playing_zone(window, width_card, height_card)
-    player_a.show_cards_beginning()
-    player_b.show_cards_beginning()
-    window.mainloop()
+    launch = SetupFrame(window)
+    # Card.initialize_deck_from_json()
+    # player_a = PlayerFrame("Hugo", window, TOP)
+    # player_b = PlayerFrame("Cami", window, BOTTOM)
+    # player_a.update_cards()
+    # player_b.update_cards()
+    # width_card = 63
+    # height_card = 86
+    # init_playing_zone(window, width_card, height_card)
+    # # player_a.show_cards_beginning()
+    # # player_b.show_cards_beginning()
+    # window.mainloop()
 
 if __name__ == "__main__":
     main()
